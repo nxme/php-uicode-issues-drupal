@@ -69,6 +69,8 @@ https://stackoverflow.com/questions/1725227/preg-match-and-utf-8-in-php
 
 The unit tests for Drupal on validating UTF-8 are very weak, see the `testValidateUtf8(` function.
 
+PHP Unicode Dont Play Nicely
+https://jonnybarnes.uk/blog/2013/06/getting-php-to-play-nicely-with-unicode
 
 Important
 https://blog.because-security.com/t/drupal-drupalrequestsanitizer-fixes-pre-auth-remote-code-exec-bug-sa-core-2018-002-cve-2018-7600/313
