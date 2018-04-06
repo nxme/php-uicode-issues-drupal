@@ -14,6 +14,43 @@ File: \Drupal\Component\Utility\Unicode
       return (preg_match('/^./us', $text) == 1);
     }
     
+File: `C:\basil\source_code\drupal\core\includes\bootstrap.inc`
+
+    /**
+     * Checks whether a string is valid UTF-8.
+     *
+     * All functions designed to filter input should use drupal_validate_utf8
+     * to ensure they operate on valid UTF-8 strings to prevent bypass of the
+     * filter.
+     *
+     * When text containing an invalid UTF-8 lead byte (0xC0 - 0xFF) is presented
+     * as UTF-8 to Internet Explorer 6, the program may misinterpret subsequent
+     * bytes. When these subsequent bytes are HTML control characters such as
+     * quotes or angle brackets, parts of the text that were deemed safe by filters
+     * end up in locations that are potentially unsafe; An onerror attribute that
+     * is outside of a tag, and thus deemed safe by a filter, can be interpreted
+     * by the browser as if it were inside the tag.
+     *
+     * The function does not return FALSE for strings containing character codes
+     * above U+10FFFF, even though these are prohibited by RFC 3629.
+     *
+     * @param $text
+     *   The text to check.
+     *
+     * @return bool
+     *   TRUE if the text is valid UTF-8, FALSE if not.
+     *
+     * @see \Drupal\Component\Utility\Unicode::validateUtf8()
+     *
+     * @deprecated in Drupal 8.0.0, will be removed before Drupal 9.0.0.
+     *   Use \Drupal\Component\Utility\Unicode::validateUtf8().
+     *
+     * @see https://www.drupal.org/node/1992584
+     */
+    function drupal_validate_utf8($text) {
+      return Unicode::validateUtf8($text);
+    }
+
 File: `core/lib/Drupal/Component/Utility/Xss.php`
 Filters XSS attacks:
 
