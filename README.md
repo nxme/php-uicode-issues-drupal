@@ -63,11 +63,22 @@ Filters XSS attacks:
       if (!Unicode::validateUtf8($string)) {
         return '';
       }
+      
+Even preg_match has its own problems and could not be trusted completely:
+https://stackoverflow.com/questions/1725227/preg-match-and-utf-8-in-php
+
+The unit tests for Drupal on validating UTF-8 are very weak, see the `testValidateUtf8(` function.
+
 
 Important
 https://blog.because-security.com/t/drupal-drupalrequestsanitizer-fixes-pre-auth-remote-code-exec-bug-sa-core-2018-002-cve-2018-7600/313
 
 Medium
 https://api.drupal.org/api/drupal/includes%21bootstrap.inc/function/drupal_validate_utf8/7.x
+
 https://www.drupal.org/node/1992584
+
 https://stackoverflow.com/questions/1282986/utf-8-validation-in-php-without-using-preg-match
+
+https://stackoverflow.com/questions/279170/utf-8-all-the-way-through
+
