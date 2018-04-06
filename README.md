@@ -14,7 +14,18 @@ File: \Drupal\Component\Utility\Unicode
       return (preg_match('/^./us', $text) == 1);
     }
     
+File: `core/lib/Drupal/Component/Utility/Xss.php`
+Filters XSS attacks:
 
+    public static function filter($string, array $html_tags = NULL) {
+      if (is_null($html_tags)) {
+        $html_tags = static::$htmlTags;
+      }
+      // Only operate on valid UTF-8 strings. This is necessary to prevent cross
+      // site scripting issues on Internet Explorer 6.
+      if (!Unicode::validateUtf8($string)) {
+        return '';
+      }
 
 Important
 https://blog.because-security.com/t/drupal-drupalrequestsanitizer-fixes-pre-auth-remote-code-exec-bug-sa-core-2018-002-cve-2018-7600/313
